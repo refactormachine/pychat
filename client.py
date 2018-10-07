@@ -51,6 +51,7 @@ class ClientUI(object):
     """
     Handle the use of Client
     """
+
     def __init__(self, client):
         """
         :param client: Client
@@ -134,6 +135,7 @@ def main():
     handler = ClientUI(client)
     if handler.connect_to_server():
         handler.main_loop()
+
 
 if __name__ == '__main__':
     main()

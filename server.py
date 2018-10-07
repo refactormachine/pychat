@@ -133,15 +133,16 @@ class ClientHandler(threading.Thread):
         self.server.clear_messages(self.client_name)
         if not messages:  # None or with length 0
             return EMPTY
-        messages = ["{sender} {msg}".format(sender=sender, msg=msg) for sender, msgs in messages.items() for msg in msgs]
+        messages = ["{sender} {msg}".format(sender=sender, msg=msg) for sender, msgs in messages.items() for msg in
+                    msgs]
         return '|'.join(messages)
 
     def send_pm(self, request):
         name_start = len("send to ")
-        name_end = request.find(" ", name_start+1)
+        name_end = request.find(" ", name_start + 1)
 
         to = request[name_start:name_end]
-        msg = request[name_end+1:]
+        msg = request[name_end + 1:]
 
         print "{} -> {}: {}".format(self.client_name, to, msg)
         self.server.add_message(self.client_name, to, msg)
@@ -158,6 +159,7 @@ class ClientHandler(threading.Thread):
 def main():
     server = Server()
     server.start(PORT)
+
 
 if __name__ == '__main__':
     main()
